@@ -1,5 +1,4 @@
 const Category = require("../models/category_model");
-// const mongoose_fuzzy_searching = require('mongoose-fuzzy-searching');
 
 const getCategories = (req, res) => {
     Category
@@ -28,9 +27,6 @@ const getCategoryById = (req, res) => {
         });
 }
 
-
-
-
 const deleteCategory = (req, res) => {
     Category
         .findByIdAndDelete(req.params.id)
@@ -47,7 +43,6 @@ const deleteCategory = (req, res) => {
             );
         });
 }
-
 
 const addCategory = (req, res) => {
     new Category({
@@ -72,7 +67,6 @@ const addCategory = (req, res) => {
 
 
 const updateCategory = function (req, res) {
-    console.log(req);
     if (!req.body) {
         return res.status(400).send({
             message: "Data to update can not be empty!"
@@ -105,7 +99,6 @@ const updateCategory = function (req, res) {
 
 const seachCategory= async function(req,res){
     const query=req.params.query
-    // console.log(query);
     const categories= await Category.fuzzySearch(query,function(err, result) {
         if (err) {
           return res.status(404).json({message:err})
@@ -115,13 +108,12 @@ const seachCategory= async function(req,res){
           
         }
     });
-   
-    // console.log(categories);
 
 }
 
-
-
-
-
-module.exports = { getCategories, getCategoryById, deleteCategory, addCategory, updateCategory , seachCategory}; //EXPORT YOUR FUNCTIONS HERE
+module.exports = { getCategories, 
+                  getCategoryById, 
+                  deleteCategory,
+                  addCategory, 
+                  updateCategory, 
+                  seachCategory};
