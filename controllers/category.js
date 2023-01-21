@@ -97,23 +97,9 @@ const updateCategory = function (req, res) {
     })
 }
 
-const seachCategory= async function(req,res){
-    const query=req.params.query
-    const categories= await Category.fuzzySearch(query,function(err, result) {
-        if (err) {
-          return res.status(404).json({message:err})
-          
-        } else {
-            return res.status(200).send(result);
-          
-        }
-    });
-
-}
 
 module.exports = { getCategories, 
                   getCategoryById, 
                   deleteCategory,
                   addCategory, 
-                  updateCategory, 
-                  seachCategory};
+                  updateCategory};
